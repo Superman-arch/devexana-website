@@ -28,7 +28,7 @@ const ServiceDetail = () => {
     );
   }
 
-  const Icon = Icons[service.icon as keyof typeof Icons];
+  const Icon = Icons[service.icon as keyof typeof Icons] as React.ComponentType<{ className?: string }>;
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 pt-24 pb-16">

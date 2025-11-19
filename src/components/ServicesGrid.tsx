@@ -10,7 +10,7 @@ const ServicesGrid = () => {
   const [activeTab, setActiveTab] = useState<'consulting' | 'implementation'>('consulting');
 
   const getIcon = (iconName: string) => {
-    const IconComponent = Icons[iconName as keyof typeof Icons];
+    const IconComponent = Icons[iconName as keyof typeof Icons] as React.ComponentType<{ className?: string }>;
     return IconComponent ? <IconComponent className="w-6 h-6" /> : null;
   };
 

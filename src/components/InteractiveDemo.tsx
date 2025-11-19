@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
+import { Mic, Phone } from 'lucide-react';
 import Vapi from '@vapi-ai/web';
 
 const InteractiveDemo = () => {
