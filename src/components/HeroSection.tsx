@@ -56,9 +56,9 @@ const HeroSection = () => {
           }}
         />
 
-        {/* Floating icons */}
+        {/* Floating icons - hidden on mobile */}
         <motion.div
-          className="absolute top-32 right-24 p-4 bg-primary-500/10 rounded-2xl border border-primary-500/20"
+          className="hidden md:block absolute top-32 right-24 p-4 bg-primary-500/10 rounded-2xl border border-primary-500/20"
           animate={{
             y: [-15, 15, -15],
             rotate: [0, 5, 0, -5, 0],
@@ -74,7 +74,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-48 left-16 p-3 bg-accent-500/10 rounded-xl border border-accent-500/20"
+          className="hidden md:block absolute bottom-48 left-16 p-3 bg-accent-500/10 rounded-xl border border-accent-500/20"
           animate={{
             y: [15, -15, 15],
             x: [-8, 8, -8],
@@ -90,7 +90,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="absolute top-1/3 left-[15%] p-3 bg-primary-500/10 rounded-full border border-primary-500/20"
+          className="hidden lg:block absolute top-1/3 left-[15%] p-3 bg-primary-500/10 rounded-full border border-primary-500/20"
           animate={{
             y: [-20, 20, -20],
             scale: [1, 1.1, 1],
@@ -106,7 +106,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="absolute top-48 right-[15%] p-3 bg-accent-500/10 rounded-xl border border-accent-500/20"
+          className="hidden lg:block absolute top-48 right-[15%] p-3 bg-accent-500/10 rounded-xl border border-accent-500/20"
           animate={{
             y: [10, -20, 10],
             rotate: [-5, 5, -5],
@@ -122,7 +122,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-32 right-32 p-3 bg-primary-500/10 rounded-full border border-primary-500/20"
+          className="hidden lg:block absolute bottom-32 right-32 p-3 bg-primary-500/10 rounded-full border border-primary-500/20"
           animate={{
             y: [-12, 12, -12],
             x: [5, -5, 5],
@@ -138,7 +138,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="absolute top-2/3 right-[10%] p-2 bg-accent-500/10 rounded-lg border border-accent-500/20"
+          className="hidden lg:block absolute top-2/3 right-[10%] p-2 bg-accent-500/10 rounded-lg border border-accent-500/20"
           animate={{
             y: [8, -16, 8],
             opacity: [0.2, 0.4, 0.2],
@@ -167,7 +167,7 @@ const HeroSection = () => {
           {/* Logo/Brand - Large hero logo */}
           <motion.div
             variants={fadeUpItem}
-            className="relative flex justify-center -mb-8"
+            className="relative flex justify-center -mb-4 md:-mb-8"
           >
             <motion.img
               src="/assets/devexana-logo.png"
@@ -176,14 +176,14 @@ const HeroSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="h-[380px] w-auto"
+              className="h-[180px] sm:h-[280px] md:h-[380px] w-auto"
             />
           </motion.div>
 
           {/* Subtitle */}
           <motion.p
             variants={fadeUpItem}
-            className="text-3xl sm:text-4xl lg:text-5xl text-white mb-6 font-bold tracking-tight"
+            className="text-2xl sm:text-3xl lg:text-5xl text-white mb-4 sm:mb-6 font-bold tracking-tight px-4"
           >
             Never Miss Another Call
           </motion.p>
@@ -191,7 +191,7 @@ const HeroSection = () => {
           {/* Subheading */}
           <motion.p
             variants={fadeUpItem}
-            className="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4"
           >
             AI receptionist for home service contractors. Voice answers, qualifies leads, and hands off to SMS for accurate booking.
           </motion.p>
@@ -199,26 +199,26 @@ const HeroSection = () => {
           {/* CTAs */}
           <motion.div
             variants={fadeUpItem}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
           >
             <motion.button
               onClick={() => scrollToSection('consultation')}
-              className="btn-primary flex items-center gap-3 text-lg group"
+              className="btn-primary flex items-center gap-2 sm:gap-3 text-sm sm:text-lg group w-full sm:w-auto justify-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Sparkles className="w-5 h-5" />
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
               Schedule Consultation
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </motion.button>
 
             <motion.button
               onClick={() => scrollToSection('demo')}
-              className="btn-secondary flex items-center gap-3 text-lg group"
+              className="btn-secondary flex items-center gap-2 sm:gap-3 text-sm sm:text-lg group w-full sm:w-auto justify-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Play className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
+              <Play className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-125 transition-transform duration-300" />
               View Demo
             </motion.button>
           </motion.div>
@@ -226,22 +226,22 @@ const HeroSection = () => {
           {/* Trust Indicators */}
           <motion.div
             variants={fadeUpItem}
-            className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
+            className="mt-8 sm:mt-16 flex flex-wrap items-center justify-center gap-3 sm:gap-6 lg:gap-10 px-4"
           >
             {[
               { label: 'Plumbers • HVAC • Electricians', delay: 0 },
-              { label: '24/7 Call Answering', delay: 0.1 },
-              { label: 'SMS Booking Flow', delay: 0.2 },
+              { label: '24/7 Answering', delay: 0.1 },
+              { label: 'SMS Booking', delay: 0.2 },
             ].map((item, index) => (
               <motion.div
                 key={item.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 + item.delay }}
-                className="flex items-center gap-3 text-gray-400 text-sm"
+                className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm"
               >
                 <motion.div
-                  className="w-2.5 h-2.5 bg-emerald-500 rounded-full"
+                  className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-emerald-500 rounded-full"
                   animate={{
                     scale: [1, 1.3, 1],
                     opacity: [0.7, 1, 0.7],
