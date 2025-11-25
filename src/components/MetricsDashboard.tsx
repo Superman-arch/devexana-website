@@ -6,29 +6,29 @@ import { staggerContainer, fadeUpItem } from '../lib/animations';
 
 const metrics = [
   {
-    label: 'AI-Handled',
-    value: 95,
+    label: 'Calls Answered',
+    value: 100,
     suffix: '%',
     prefix: '',
-    description: 'By 2025, AI handles 95% of all customer interactions',
+    description: 'Every call gets answered, 24/7. No voicemail, no missed leads.',
     icon: Phone,
     color: 'primary',
   },
   {
-    label: 'ROI Return',
-    value: 3.5,
-    suffix: 'x',
-    prefix: '',
-    description: 'Average $3.50 return for every $1 invested in AI',
-    icon: TrendingUp,
+    label: 'Avg Call Time',
+    value: 2,
+    suffix: ' min',
+    prefix: '<',
+    description: 'Quick qualification, then handoff to SMS for booking.',
+    icon: Clock,
     color: 'accent',
   },
   {
-    label: 'Faster Response',
-    value: 70,
+    label: 'Prefer SMS',
+    value: 90,
     suffix: '%',
     prefix: '',
-    description: 'AI reduces response times by up to 70%',
+    description: 'Customers prefer texting for booking and scheduling.',
     icon: Zap,
     color: 'primary',
   },
@@ -37,7 +37,7 @@ const metrics = [
     value: 99.9,
     suffix: '%',
     prefix: '',
-    description: 'Enterprise-grade system availability',
+    description: 'Always on, even at 2 AM or during holidays.',
     icon: Activity,
     color: 'accent',
   },
@@ -97,7 +97,7 @@ const MetricCard = ({ metric, index }: { metric: typeof metrics[0]; index: numbe
             }}
           >
             {metric.prefix}
-            {metric.value === 3.5 ? animatedValue.toFixed(1) : Math.round(animatedValue)}
+            {metric.value === 99.9 ? animatedValue.toFixed(1) : Math.round(animatedValue)}
             {metric.suffix}
           </motion.h3>
         </div>
@@ -136,19 +136,19 @@ const MetricsDashboard = () => {
           variants={fadeUpItem}
           className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-semibold mb-4"
         >
-          Industry Statistics
+          Why It Works
         </motion.span>
         <motion.h2
           variants={fadeUpItem}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6"
         >
-          The Voice AI Revolution
+          Built for Contractors
         </motion.h2>
         <motion.p
           variants={fadeUpItem}
           className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
         >
-          Real industry statistics showing the transformative impact of voice AI
+          Every feature designed around how home service businesses actually work
         </motion.p>
       </motion.div>
 
@@ -175,17 +175,17 @@ const MetricsDashboard = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-lg text-white font-semibold mb-2">
-              Enterprise-grade voice AI solutions
+              Focus on the job, not the phone
             </p>
             <p className="text-gray-400">
-              Built for reliability, security, and compliance
+              Your AI receptionist handles calls while you're on site
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             {[
-              { icon: Activity, label: 'Enterprise Security' },
-              { icon: Clock, label: '24/7 Support' },
-              { icon: Users, label: '80% Adoption by 2025' },
+              { icon: Phone, label: 'Vapi Voice AI' },
+              { icon: Activity, label: 'n8n Workflows' },
+              { icon: Users, label: 'Google Calendar' },
             ].map((item, index) => (
               <motion.div
                 key={item.label}

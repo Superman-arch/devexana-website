@@ -185,7 +185,7 @@ const HeroSection = () => {
             variants={fadeUpItem}
             className="text-3xl sm:text-4xl lg:text-5xl text-white mb-6 font-bold tracking-tight"
           >
-            Transform Your Business Communications
+            Never Miss Another Call
           </motion.p>
 
           {/* Subheading */}
@@ -193,7 +193,7 @@ const HeroSection = () => {
             variants={fadeUpItem}
             className="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            We design, implement, and optimize custom voice AI agents tailored to your industry's unique needs
+            AI receptionist for home service contractors. Voice answers, qualifies leads, and hands off to SMS for accurate booking.
           </motion.p>
 
           {/* CTAs */}
@@ -229,9 +229,9 @@ const HeroSection = () => {
             className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
           >
             {[
-              { label: 'Enterprise-Grade Solutions', delay: 0 },
-              { label: '99.9% Uptime', delay: 0.1 },
-              { label: '24/7 Support Available', delay: 0.2 },
+              { label: 'Plumbers • HVAC • Electricians', delay: 0 },
+              { label: '24/7 Call Answering', delay: 0.1 },
+              { label: 'SMS Booking Flow', delay: 0.2 },
             ].map((item, index) => (
               <motion.div
                 key={item.label}

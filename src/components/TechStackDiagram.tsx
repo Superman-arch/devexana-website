@@ -2,60 +2,34 @@ import { motion } from 'framer-motion';
 import {
   Phone,
   MessageSquare,
-  Mail,
-  Smartphone,
-  Globe,
-  Brain,
-  Zap,
+  Calendar,
   Database,
-  BarChart,
-  TrendingUp,
-  FileText,
-  Headphones,
   ArrowRight,
+  ArrowDown,
+  Mic,
+  Bot,
+  Workflow,
 } from 'lucide-react';
 
 const TechStackDiagram = () => {
-  const channels = [
-    { icon: Phone, label: 'Phone', color: 'from-blue-500 to-blue-600' },
-    { icon: MessageSquare, label: 'SMS', color: 'from-green-500 to-green-600' },
-    { icon: Smartphone, label: 'WhatsApp', color: 'from-emerald-500 to-emerald-600' },
-    { icon: Mail, label: 'Email', color: 'from-purple-500 to-purple-600' },
-    { icon: Globe, label: 'Web Chat', color: 'from-indigo-500 to-indigo-600' },
-  ];
-
-  const core = [
-    { icon: Brain, label: 'LLM Integration', description: 'GPT-4, Claude, Gemini' },
-    { icon: Zap, label: 'Real-time Processing', description: 'Sub-second response' },
-    { icon: Database, label: 'Custom Training', description: 'Industry-specific models' },
-  ];
-
-  const integrations = [
-    { label: 'Salesforce', icon: Database },
-    { label: 'HubSpot', icon: BarChart },
-    { label: 'Microsoft Teams', icon: MessageSquare },
-    { label: 'Slack', icon: MessageSquare },
-    { label: 'Zendesk', icon: Headphones },
-    { label: 'Custom APIs', icon: Zap },
-  ];
-
-  const analytics = [
-    { icon: BarChart, label: 'Call Analytics' },
-    { icon: TrendingUp, label: 'Performance Metrics' },
-    { icon: FileText, label: 'Transcriptions' },
-    { icon: Headphones, label: 'Sentiment Analysis' },
-  ];
-
   return (
     <section className="section-container bg-white dark:bg-gray-950">
       <div className="text-center mb-16">
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-semibold mb-4"
+        >
+          Tech Stack
+        </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4"
         >
-          Complete Voice AI Operating System
+          Enterprise-Grade Infrastructure
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -64,128 +38,166 @@ const TechStackDiagram = () => {
           transition={{ delay: 0.1 }}
           className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
         >
-          From input to insights — a unified platform that connects every touchpoint
+          Built on proven platforms that scale with your business
         </motion.p>
       </div>
 
-      <div className="relative max-w-6xl mx-auto">
-        {/* Mobile: Vertical Layout */}
-        <div className="block lg:hidden space-y-8">
-          {/* Input Channels */}
-          <FlowSection title="Input Channels" items={channels} type="channels" />
-          <FlowArrow />
+      {/* Flow Diagram */}
+      <div className="max-w-5xl mx-auto">
+        {/* Desktop Horizontal Flow */}
+        <div className="hidden md:flex items-center justify-between gap-4">
+          {/* Step 1: Customer Call */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex-1"
+          >
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 text-center">
+              <div className="inline-flex p-4 bg-blue-100 dark:bg-blue-900/30 rounded-xl mb-4">
+                <Phone className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-1">Customer Calls</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Your business line</p>
+            </div>
+          </motion.div>
 
-          {/* AI Core */}
-          <FlowSection title="AI Core" items={core} type="core" />
-          <FlowArrow />
+          <ArrowRight className="w-6 h-6 text-gray-400 flex-shrink-0" />
 
-          {/* Integrations */}
-          <FlowSection title="Integrations" items={integrations} type="integrations" />
-          <FlowArrow />
+          {/* Step 2: Vapi Voice AI */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex-1"
+          >
+            <div className="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-6 border-2 border-primary-200 dark:border-primary-800 text-center">
+              <div className="inline-flex p-4 bg-primary-100 dark:bg-primary-900/30 rounded-xl mb-4">
+                <Mic className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+              </div>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-1">Vapi Voice AI</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Answers & qualifies</p>
+            </div>
+          </motion.div>
 
-          {/* Analytics */}
-          <FlowSection title="Analytics" items={analytics} type="analytics" />
+          <ArrowRight className="w-6 h-6 text-gray-400 flex-shrink-0" />
+
+          {/* Step 3: n8n + Twilio */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex-1"
+          >
+            <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-6 border-2 border-emerald-200 dark:border-emerald-800 text-center">
+              <div className="inline-flex p-4 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl mb-4">
+                <MessageSquare className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-1">n8n + Twilio</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">SMS booking flow</p>
+            </div>
+          </motion.div>
+
+          <ArrowRight className="w-6 h-6 text-gray-400 flex-shrink-0" />
+
+          {/* Step 4: Google Calendar */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="flex-1"
+          >
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 text-center">
+              <div className="inline-flex p-4 bg-orange-100 dark:bg-orange-900/30 rounded-xl mb-4">
+                <Calendar className="w-8 h-8 text-orange-600 dark:text-orange-400" />
+              </div>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-1">Google Calendar</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Scheduling</p>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Desktop: Horizontal Layout */}
-        <div className="hidden lg:grid lg:grid-cols-7 gap-4 items-center">
-          {/* Input Channels */}
-          <div className="col-span-1">
-            <FlowSection title="Input Channels" items={channels} type="channels" />
-          </div>
-
-          <div className="col-span-1 flex justify-center">
-            <ArrowRight className="w-8 h-8 text-primary-500" />
-          </div>
-
-          {/* AI Core */}
-          <div className="col-span-2">
-            <FlowSection title="AI Core" items={core} type="core" />
-          </div>
-
-          <div className="col-span-1 flex justify-center">
-            <ArrowRight className="w-8 h-8 text-primary-500" />
-          </div>
-
-          {/* Integrations & Analytics */}
-          <div className="col-span-2 space-y-6">
-            <FlowSection title="Integrations" items={integrations} type="integrations" />
-            <FlowSection title="Analytics" items={analytics} type="analytics" />
-          </div>
+        {/* Mobile Vertical Flow */}
+        <div className="md:hidden space-y-4">
+          {[
+            { icon: Phone, title: 'Customer Calls', desc: 'Your business line', color: 'blue' },
+            { icon: Mic, title: 'Vapi Voice AI', desc: 'Answers & qualifies', color: 'primary' },
+            { icon: MessageSquare, title: 'n8n + Twilio', desc: 'SMS booking flow', color: 'emerald' },
+            { icon: Calendar, title: 'Google Calendar', desc: 'Scheduling', color: 'orange' },
+          ].map((step, index) => (
+            <div key={step.title}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`rounded-2xl p-6 border text-center ${
+                  step.color === 'primary'
+                    ? 'bg-primary-50 dark:bg-primary-900/20 border-primary-200 dark:border-primary-800'
+                    : step.color === 'emerald'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
+                    : 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+                }`}
+              >
+                <div className={`inline-flex p-4 rounded-xl mb-4 ${
+                  step.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30' :
+                  step.color === 'primary' ? 'bg-primary-100 dark:bg-primary-900/30' :
+                  step.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30' :
+                  'bg-orange-100 dark:bg-orange-900/30'
+                }`}>
+                  <step.icon className={`w-8 h-8 ${
+                    step.color === 'blue' ? 'text-blue-600 dark:text-blue-400' :
+                    step.color === 'primary' ? 'text-primary-600 dark:text-primary-400' :
+                    step.color === 'emerald' ? 'text-emerald-600 dark:text-emerald-400' :
+                    'text-orange-600 dark:text-orange-400'
+                  }`} />
+                </div>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-1">{step.title}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{step.desc}</p>
+              </motion.div>
+              {index < 3 && (
+                <div className="flex justify-center py-2">
+                  <ArrowDown className="w-6 h-6 text-gray-400" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
+
+        {/* Tech Details */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {[
+            { icon: Mic, label: 'Vapi.ai', desc: 'Voice AI' },
+            { icon: Workflow, label: 'n8n', desc: 'Automation' },
+            { icon: MessageSquare, label: 'Twilio', desc: 'SMS' },
+            { icon: Database, label: 'Airtable', desc: 'CRM' },
+          ].map((tech, index) => (
+            <motion.div
+              key={tech.label}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 + index * 0.05 }}
+              className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 text-center border border-gray-200 dark:border-gray-700"
+            >
+              <tech.icon className="w-6 h-6 text-gray-600 dark:text-gray-400 mx-auto mb-2" />
+              <p className="font-semibold text-gray-900 dark:text-white text-sm">{tech.label}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{tech.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 };
-
-const FlowSection = ({ title, items, type }: any) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 text-center">
-        {title}
-      </h3>
-
-      <div className={`space-y-3 ${type === 'core' ? 'bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 p-6 rounded-2xl border-2 border-primary-200 dark:border-primary-800' : ''}`}>
-        {items.map((item: any, index: number) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            whileHover={{ scale: 1.05 }}
-            className={`${
-              type === 'channels'
-                ? 'flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all'
-                : type === 'core'
-                ? 'p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700'
-                : type === 'integrations'
-                ? 'flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg'
-                : 'flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700'
-            }`}
-          >
-            {item.icon && (
-              <div
-                className={`p-2 rounded-lg bg-gradient-to-br ${
-                  item.color || 'from-primary-500 to-accent-500'
-                }`}
-              >
-                <item.icon className="w-5 h-5 text-white" />
-              </div>
-            )}
-
-            <div className="flex-1">
-              <p className="font-semibold text-gray-900 dark:text-white text-sm">
-                {item.label}
-              </p>
-              {item.description && (
-                <p className="text-xs text-gray-600 dark:text-gray-400">
-                  {item.description}
-                </p>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-};
-
-const FlowArrow = () => (
-  <div className="flex justify-center lg:hidden">
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.2 }}
-    >
-      <ArrowRight className="w-8 h-8 text-primary-500 transform rotate-90" />
-    </motion.div>
-  </div>
-);
 
 export default TechStackDiagram;
