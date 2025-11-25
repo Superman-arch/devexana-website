@@ -164,11 +164,22 @@ const HeroSection = () => {
           animate="visible"
           className="max-w-5xl mx-auto"
         >
-          {/* Logo/Brand - Large hero logo */}
+          {/* Logo/Brand - Text on mobile, image on desktop */}
           <motion.div
             variants={fadeUpItem}
-            className="relative flex justify-center -mb-4 md:-mb-8"
+            className="relative flex flex-col items-center justify-center -mb-4 md:-mb-8"
           >
+            {/* Mobile: Text logo */}
+            <div className="md:hidden text-center">
+              <h1 className="text-5xl font-bold text-white tracking-tight mb-1">
+                DEVEXANA
+              </h1>
+              <p className="text-primary-400 text-sm font-semibold tracking-widest uppercase">
+                Voice AI Consultants
+              </p>
+            </div>
+
+            {/* Desktop: Image logo */}
             <motion.img
               src="/assets/devexana-logo.png"
               alt="Devexana Logo"
@@ -176,7 +187,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="h-[180px] sm:h-[280px] md:h-[380px] w-auto"
+              className="hidden md:block h-[380px] w-auto"
             />
           </motion.div>
 
