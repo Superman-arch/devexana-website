@@ -1,10 +1,14 @@
-import { motion } from 'framer-motion';
-import { Code, Briefcase } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Target, Eye, Mail, Sparkles } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { staggerContainer, fadeUpItem } from '../lib/animations';
 
 const AboutUs = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const titleRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true });
 
   const scrollToConsultation = () => {
     if (location.pathname !== '/') {
@@ -20,84 +24,100 @@ const AboutUs = () => {
   const founders = [
     {
       name: 'Amadeo Bonde',
+      initials: 'AB',
       role: 'Co-Founder & CEO',
       bio: 'AI enthusiast and entrepreneur focused on building scalable voice AI solutions for enterprises. Passionate about leveraging cutting-edge technology to solve real-world business challenges.',
-      linkedin: '#',
       email: 'amadeo@devexana.com',
       skills: ['AI/ML', 'Product Strategy', 'Enterprise Solutions']
     },
     {
       name: 'Noah Dockery',
+      initials: 'ND',
       role: 'Co-Founder & CTO',
       bio: 'AI specialist leading sales, outreach, and client partnerships. Focused on building robust, scalable voice AI systems while driving business growth and customer success.',
-      linkedin: '#',
       email: 'noah@devexana.com',
       skills: ['Voice AI', 'System Architecture', 'Machine Learning']
     }
   ];
 
   return (
-    <section className="section-container bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+    <section id="about" className="section-container bg-gray-50 dark:bg-navy-950">
       {/* Company Overview */}
-      <div className="text-center mb-16">
+      <motion.div
+        ref={titleRef}
+        initial="hidden"
+        animate={isTitleInView ? 'visible' : 'hidden'}
+        variants={staggerContainer}
+        className="text-center mb-16"
+      >
+        <motion.span
+          variants={fadeUpItem}
+          className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-semibold mb-4"
+        >
+          About Us
+        </motion.span>
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+          variants={fadeUpItem}
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6"
         >
           About Devexana
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          variants={fadeUpItem}
           className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-4"
         >
           We're building the future of business communication through intelligent voice AI agents.
         </motion.p>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          variants={fadeUpItem}
           className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
         >
           Devexana combines cutting-edge AI technology with deep industry expertise to create voice
-          agents that transform how businesses interact with their customers. From consulting to
-          implementation, we're your partner in the voice AI revolution.
+          agents that transform how businesses interact with their customers.
         </motion.p>
-      </div>
+      </motion.div>
 
       {/* Mission & Vision */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
         className="grid md:grid-cols-2 gap-8 mb-20"
       >
-        <div className="glass-dark rounded-2xl p-8">
-          <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center mb-4">
-            <Briefcase className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h3>
-          <p className="text-gray-600 dark:text-gray-400">
-            To democratize access to enterprise-grade voice AI technology, enabling businesses of all
-            sizes to deliver exceptional customer experiences through intelligent automation.
-          </p>
-        </div>
-
-        <div className="glass-dark rounded-2xl p-8">
-          <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center mb-4">
-            <Code className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Vision</h3>
-          <p className="text-gray-600 dark:text-gray-400">
-            A world where every business interaction is enhanced by AI, creating seamless, efficient,
-            and personalized experiences that benefit both companies and their customers.
-          </p>
-        </div>
+        {[
+          {
+            icon: Target,
+            title: 'Our Mission',
+            description: 'To democratize access to enterprise-grade voice AI technology, enabling businesses of all sizes to deliver exceptional customer experiences through intelligent automation.'
+          },
+          {
+            icon: Eye,
+            title: 'Our Vision',
+            description: 'A world where every business interaction is enhanced by AI, creating seamless, efficient, and personalized experiences that benefit both companies and their customers.'
+          }
+        ].map((item, index) => (
+          <motion.div
+            key={item.title}
+            variants={fadeUpItem}
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="bg-white dark:bg-navy-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700/50 shadow-lg hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500"
+          >
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 200, delay: index * 0.1 }}
+              className="w-14 h-14 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-600/30"
+            >
+              <item.icon className="w-7 h-7 text-white" />
+            </motion.div>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{item.title}</h3>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+              {item.description}
+            </p>
+          </motion.div>
+        ))}
       </motion.div>
 
       {/* Founders Section */}
@@ -111,22 +131,32 @@ const AboutUs = () => {
           Meet the Founders
         </motion.h3>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+        >
           {founders.map((founder, index) => (
             <motion.div
               key={founder.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 hover:shadow-2xl transition-all duration-300"
+              variants={fadeUpItem}
+              whileHover={{ y: -8 }}
+              className="bg-white dark:bg-navy-800 rounded-2xl border border-gray-200 dark:border-gray-700/50 p-8 shadow-lg hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500"
             >
-              {/* Avatar Placeholder */}
-              <div className="w-32 h-32 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-5xl font-bold text-white">
-                  {founder.name.split(' ').map(n => n[0]).join('')}
+              {/* Avatar */}
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: 'spring', stiffness: 200, delay: index * 0.1 }}
+                className="w-28 h-28 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary-600/30"
+              >
+                <span className="text-4xl font-bold text-white">
+                  {founder.initials}
                 </span>
-              </div>
+              </motion.div>
 
               {/* Name & Role */}
               <h4 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-2">
@@ -137,7 +167,7 @@ const AboutUs = () => {
               </p>
 
               {/* Bio */}
-              <p className="text-gray-600 dark:text-gray-400 text-center mb-6">
+              <p className="text-gray-600 dark:text-gray-400 text-center mb-6 leading-relaxed">
                 {founder.bio}
               </p>
 
@@ -146,7 +176,7 @@ const AboutUs = () => {
                 {founder.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium"
+                    className="px-3 py-1.5 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium"
                   >
                     {skill}
                   </span>
@@ -154,37 +184,57 @@ const AboutUs = () => {
               </div>
 
               {/* Email */}
-              <div className="text-center">
-                <a
-                  href={`mailto:${founder.email}`}
-                  className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
-                >
-                  {founder.email}
-                </a>
-              </div>
+              <motion.a
+                href={`mailto:${founder.email}`}
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center justify-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 font-medium"
+              >
+                <Mail className="w-4 h-4" />
+                {founder.email}
+              </motion.a>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* CTA */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-20 text-center"
+        className="mt-20"
       >
-        <div className="glass-dark rounded-2xl p-8 sm:p-12">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Want to work with us?
-          </h3>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-            We're always excited to collaborate with forward-thinking businesses ready to embrace
-            the future of voice AI.
-          </p>
-          <button onClick={scrollToConsultation} className="btn-primary text-lg">
-            Get in Touch
-          </button>
+        <div className="bg-navy-800 rounded-3xl p-10 sm:p-14 text-center relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-500/10 rounded-full blur-3xl" />
+
+          <div className="relative z-10">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 200 }}
+              className="inline-flex p-3 bg-primary-500/20 rounded-2xl mb-6"
+            >
+              <Sparkles className="w-8 h-8 text-primary-400" />
+            </motion.div>
+            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Want to work with us?
+            </h3>
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+              We're always excited to collaborate with forward-thinking businesses ready to embrace
+              the future of voice AI.
+            </p>
+            <motion.button
+              onClick={scrollToConsultation}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-10 py-4 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all shadow-lg shadow-primary-600/30 text-lg"
+            >
+              Get in Touch
+            </motion.button>
+          </div>
         </div>
       </motion.div>
     </section>

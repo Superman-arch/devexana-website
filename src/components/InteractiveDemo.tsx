@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, Phone } from 'lucide-react';
+import { Mic, PhoneOff } from 'lucide-react';
 import Vapi from '@vapi-ai/web';
 
 const InteractiveDemo = () => {
@@ -144,24 +144,68 @@ const InteractiveDemo = () => {
             onClick={isCallActive ? endCall : startCall}
             className={`relative w-48 h-48 rounded-full cursor-pointer transition-all duration-300 ${
               isCallActive
-                ? 'bg-gradient-to-br from-primary-600 to-accent-600 shadow-2xl'
-                : 'bg-gradient-to-br from-gray-700 to-gray-900 shadow-xl hover:shadow-2xl'
+                ? 'bg-gradient-to-br from-primary-500 to-accent-500 shadow-2xl shadow-primary-500/30'
+                : 'bg-gradient-to-br from-primary-600 to-primary-800 shadow-xl hover:shadow-2xl hover:shadow-primary-500/20'
             }`}
           >
-            {/* Avatar Icon/Image */}
+            {/* Outer ring */}
+            <div className={`absolute inset-0 rounded-full border-4 ${
+              isCallActive ? 'border-white/30' : 'border-primary-400/20'
+            }`} />
+
+            {/* Inner content - AI Face */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                animate={{
-                  scale: isSpeaking ? [1, 1.1, 1] : 1,
-                }}
-                transition={{ duration: 0.5, repeat: isSpeaking ? Infinity : 0 }}
-              >
-                {isCallActive ? (
-                  <Mic className="w-20 h-20 text-white" />
-                ) : (
-                  <Phone className="w-20 h-20 text-white" />
-                )}
-              </motion.div>
+              {isCallActive ? (
+                /* Active call - show mic or end call icon */
+                <motion.div
+                  animate={{
+                    scale: isSpeaking ? [1, 1.15, 1] : 1,
+                  }}
+                  transition={{ duration: 0.5, repeat: isSpeaking ? Infinity : 0 }}
+                  className="flex flex-col items-center"
+                >
+                  <Mic className="w-16 h-16 text-white" />
+                  <span className="text-white/80 text-xs mt-2 font-medium">Tap to end</span>
+                </motion.div>
+              ) : (
+                /* Idle state - friendly AI avatar face */
+                <div className="flex flex-col items-center">
+                  {/* AI Face - two eyes and a smile */}
+                  <div className="flex gap-6 mb-3">
+                    {/* Left eye */}
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                      className="w-4 h-4 bg-white rounded-full"
+                    />
+                    {/* Right eye */}
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                      className="w-4 h-4 bg-white rounded-full"
+                    />
+                  </div>
+                  {/* Animated sound wave bars (smile/mouth area) */}
+                  <div className="flex items-end gap-1 h-8">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <motion.div
+                        key={i}
+                        animate={{
+                          height: ['12px', '24px', '12px'],
+                        }}
+                        transition={{
+                          duration: 1.2,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: i * 0.15,
+                        }}
+                        className="w-2 bg-white/90 rounded-full"
+                      />
+                    ))}
+                  </div>
+                  <span className="text-white/80 text-xs mt-3 font-medium">Tap to talk</span>
+                </div>
+              )}
             </div>
 
             {/* Status indicator */}
@@ -170,10 +214,12 @@ const InteractiveDemo = () => {
                 scale: isCallActive ? [1, 1.2, 1] : 1,
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className={`absolute -bottom-2 -right-2 w-12 h-12 rounded-full border-4 border-white dark:border-gray-900 ${
-                isCallActive ? 'bg-green-500' : 'bg-gray-400'
+              className={`absolute -bottom-1 -right-1 w-10 h-10 rounded-full border-4 border-white dark:border-gray-900 flex items-center justify-center ${
+                isCallActive ? 'bg-green-500' : 'bg-primary-400'
               }`}
-            />
+            >
+              {isCallActive && <PhoneOff className="w-4 h-4 text-white" />}
+            </motion.div>
           </motion.div>
 
           {/* Call status text */}

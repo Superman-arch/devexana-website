@@ -16,19 +16,19 @@ const Logo = ({ className = '', showText = true, size = 'md', iconOnly = false }
       iconHeight: 'h-12'
     },
     lg: {
-      height: 'h-[600px]',
-      iconHeight: 'h-[600px]'
+      height: 'h-48',
+      iconHeight: 'h-[350px]'
     }
   };
 
   // If only showing icon, use just the microphone part of the logo
   if (iconOnly) {
     return (
-      <div className={`flex items-center ${className}`}>
+      <div className={`flex items-center justify-center ${className}`}>
         <img
           src="/assets/logonotext.png"
           alt="Devexana Logo"
-          className={`${sizeClasses[size].iconHeight} w-auto object-contain`}
+          className={`${sizeClasses[size].iconHeight} max-w-none`}
         />
       </div>
     );

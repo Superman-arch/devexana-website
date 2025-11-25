@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
-import Logo from './Logo';
+import { ArrowRight, Play, Sparkles, Phone, MessageSquare, Mic, Bot, Headphones, Radio } from 'lucide-react';
+import { staggerContainer, fadeUpItem } from '../lib/animations';
 
 const HeroSection = () => {
   const scrollToSection = (id: string) => {
@@ -9,14 +9,16 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-start justify-center overflow-hidden gradient-bg -mt-[150px]">
-      {/* Animated Background Elements */}
+    <section className="relative min-h-screen flex items-start justify-center overflow-hidden bg-navy-900 -mt-16">
+      {/* Animated Background Elements - Solid shapes with blur */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Large floating orb - top left */}
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl"
+          className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-primary-600/20 rounded-full blur-[100px]"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            x: [0, 30, 0],
+            y: [0, 20, 0],
           }}
           transition={{
             duration: 8,
@@ -24,11 +26,14 @@ const HeroSection = () => {
             ease: 'easeInOut',
           }}
         />
+
+        {/* Medium floating orb - bottom right */}
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent-400/20 rounded-full blur-3xl"
+          className="absolute -bottom-40 -right-20 w-[600px] h-[600px] bg-accent-500/15 rounded-full blur-[120px]"
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
+            x: [0, -40, 0],
+            y: [0, -30, 0],
           }}
           transition={{
             duration: 10,
@@ -36,91 +41,220 @@ const HeroSection = () => {
             ease: 'easeInOut',
           }}
         />
+
+        {/* Small accent orb */}
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-[200px] h-[200px] bg-primary-500/10 rounded-full blur-[60px]"
+          animate={{
+            scale: [1, 1.4, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+
+        {/* Floating icons */}
+        <motion.div
+          className="absolute top-32 right-24 p-4 bg-primary-500/10 rounded-2xl border border-primary-500/20"
+          animate={{
+            y: [-15, 15, -15],
+            rotate: [0, 5, 0, -5, 0],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Phone className="w-8 h-8 text-primary-400" />
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-48 left-16 p-3 bg-accent-500/10 rounded-xl border border-accent-500/20"
+          animate={{
+            y: [15, -15, 15],
+            x: [-8, 8, -8],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <MessageSquare className="w-6 h-6 text-accent-400" />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-1/3 left-[15%] p-3 bg-primary-500/10 rounded-full border border-primary-500/20"
+          animate={{
+            y: [-20, 20, -20],
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Mic className="w-5 h-5 text-primary-400" />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-48 right-[15%] p-3 bg-accent-500/10 rounded-xl border border-accent-500/20"
+          animate={{
+            y: [10, -20, 10],
+            rotate: [-5, 5, -5],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Bot className="w-6 h-6 text-accent-400" />
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-32 right-32 p-3 bg-primary-500/10 rounded-full border border-primary-500/20"
+          animate={{
+            y: [-12, 12, -12],
+            x: [5, -5, 5],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 11,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Headphones className="w-5 h-5 text-primary-400" />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-2/3 right-[10%] p-2 bg-accent-500/10 rounded-lg border border-accent-500/20"
+          animate={{
+            y: [8, -16, 8],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Radio className="w-4 h-4 text-accent-400" />
+        </motion.div>
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 section-container text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
           className="max-w-5xl mx-auto"
         >
-          {/* Logo/Brand */}
+          {/* Logo/Brand - Large hero logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="-mb-[150px] flex justify-center"
+            variants={fadeUpItem}
+            className="relative flex justify-center -mb-8"
           >
-            <Logo size="lg" showText={false} />
+            <motion.img
+              src="/assets/devexana-logo.png"
+              alt="Devexana Logo"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              className="h-[380px] w-auto"
+            />
           </motion.div>
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-2xl sm:text-3xl text-white/90 mb-4 font-semibold"
+            variants={fadeUpItem}
+            className="text-3xl sm:text-4xl lg:text-5xl text-white mb-6 font-bold tracking-tight"
           >
             Transform Your Business Communications
           </motion.p>
 
           {/* Subheading */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl text-white/75 mb-8 max-w-3xl mx-auto leading-relaxed"
+            variants={fadeUpItem}
+            className="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
             We design, implement, and optimize custom voice AI agents tailored to your industry's unique needs
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            variants={fadeUpItem}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button
+            <motion.button
               onClick={() => scrollToSection('consultation')}
-              className="btn-primary flex items-center gap-2 text-lg group"
+              className="btn-primary flex items-center gap-3 text-lg group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
+              <Sparkles className="w-5 h-5" />
               Schedule Consultation
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+            </motion.button>
 
-            <button
+            <motion.button
               onClick={() => scrollToSection('demo')}
-              className="btn-secondary flex items-center gap-2 text-lg group"
+              className="btn-secondary flex items-center gap-3 text-lg group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <Play className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
               View Demo
-            </button>
+            </motion.button>
           </motion.div>
 
           {/* Trust Indicators */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-white/60 text-sm"
+            variants={fadeUpItem}
+            className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span>Enterprise-Grade Solutions</span>
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-white/20" />
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span>99.99% Uptime</span>
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-white/20" />
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span>24/7 Support Available</span>
-            </div>
+            {[
+              { label: 'Enterprise-Grade Solutions', delay: 0 },
+              { label: '99.9% Uptime', delay: 0.1 },
+              { label: '24/7 Support Available', delay: 0.2 },
+            ].map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 + item.delay }}
+                className="flex items-center gap-3 text-gray-400 text-sm"
+              >
+                <motion.div
+                  className="w-2.5 h-2.5 bg-emerald-500 rounded-full"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.7, 1, 0.7],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: index * 0.3
+                  }}
+                />
+                <span className="font-medium">{item.label}</span>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
@@ -129,19 +263,24 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        transition={{ duration: 1, delay: 1.5 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 12, 0] }}
           transition={{
             duration: 2,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2"
+          className="w-7 h-12 border-2 border-white/30 rounded-full flex items-start justify-center p-2 hover:border-primary-400 transition-colors cursor-pointer"
+          onClick={() => scrollToSection('demo')}
         >
-          <motion.div className="w-1 h-2 bg-white/50 rounded-full" />
+          <motion.div
+            className="w-1.5 h-3 bg-primary-400 rounded-full"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
         </motion.div>
       </motion.div>
     </section>
