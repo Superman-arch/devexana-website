@@ -167,16 +167,13 @@ const HeroSection = () => {
           {/* Logo/Brand - Text on mobile, image on desktop */}
           <motion.div
             variants={fadeUpItem}
-            className="relative flex flex-col items-center justify-center -mb-4 md:-mb-8"
+            className="relative flex flex-col items-center justify-center mb-6 md:-mb-8"
           >
             {/* Mobile: Text logo */}
-            <div className="md:hidden text-center">
-              <h1 className="text-5xl font-bold text-white tracking-tight mb-1">
+            <div className="md:hidden text-center mb-4">
+              <h1 className="text-4xl font-bold text-white tracking-tight">
                 DEVEXANA
               </h1>
-              <p className="text-primary-400 text-sm font-semibold tracking-widest uppercase">
-                Voice AI Consultants
-              </p>
             </div>
 
             {/* Desktop: Image logo */}
