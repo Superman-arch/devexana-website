@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
-import { TrendingUp, Users, Phone, Activity, Zap, Clock } from 'lucide-react';
+import { Users, Phone, Activity, Zap, Clock } from 'lucide-react';
 import { staggerContainer, fadeUpItem } from '../lib/animations';
 
 const metrics = [

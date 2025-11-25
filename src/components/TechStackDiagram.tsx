@@ -7,7 +7,6 @@ import {
   ArrowRight,
   ArrowDown,
   Mic,
-  Bot,
   Workflow,
 } from 'lucide-react';
 
