@@ -137,75 +137,113 @@ const InteractiveDemo = () => {
             )}
           </AnimatePresence>
 
-          {/* Avatar Circle */}
+          {/* Avatar Circle - ElevenLabs style orb */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={isCallActive ? endCall : startCall}
-            className={`relative w-48 h-48 rounded-full cursor-pointer transition-all duration-300 ${
-              isCallActive
-                ? 'bg-gradient-to-br from-primary-500 to-accent-500 shadow-2xl shadow-primary-500/30'
-                : 'bg-gradient-to-br from-primary-600 to-primary-800 shadow-xl hover:shadow-2xl hover:shadow-primary-500/20'
-            }`}
+            className="relative w-48 h-48 cursor-pointer"
           >
-            {/* Outer ring */}
-            <div className={`absolute inset-0 rounded-full border-4 ${
-              isCallActive ? 'border-white/30' : 'border-primary-400/20'
+            {/* Outer glow */}
+            <div className={`absolute inset-0 rounded-full blur-xl transition-all duration-500 ${
+              isCallActive
+                ? 'bg-gradient-to-br from-emerald-400/40 to-cyan-500/40'
+                : 'bg-gradient-to-br from-blue-400/30 to-cyan-400/30'
             }`} />
 
-            {/* Inner content - AI Face */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              {isCallActive ? (
-                /* Active call - show mic or end call icon */
-                <motion.div
-                  animate={{
-                    scale: isSpeaking ? [1, 1.15, 1] : 1,
-                  }}
-                  transition={{ duration: 0.5, repeat: isSpeaking ? Infinity : 0 }}
-                  className="flex flex-col items-center"
-                >
-                  <Mic className="w-16 h-16 text-white" />
-                  <span className="text-white/80 text-xs mt-2 font-medium">Tap to end</span>
-                </motion.div>
-              ) : (
-                /* Idle state - friendly AI avatar face */
-                <div className="flex flex-col items-center">
-                  {/* AI Face - two eyes and a smile */}
-                  <div className="flex gap-6 mb-3">
-                    {/* Left eye */}
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      className="w-4 h-4 bg-white rounded-full"
-                    />
-                    {/* Right eye */}
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                      className="w-4 h-4 bg-white rounded-full"
-                    />
-                  </div>
-                  {/* Animated sound wave bars (smile/mouth area) */}
-                  <div className="flex items-end gap-1 h-8">
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <motion.div
-                        key={i}
-                        animate={{
-                          height: ['12px', '24px', '12px'],
-                        }}
-                        transition={{
-                          duration: 1.2,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                          delay: i * 0.15,
-                        }}
-                        className="w-2 bg-white/90 rounded-full"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-white/80 text-xs mt-3 font-medium">Tap to talk</span>
-                </div>
-              )}
+            {/* Main orb container */}
+            <div className={`relative w-full h-full rounded-full overflow-hidden shadow-2xl ${
+              isCallActive ? 'shadow-emerald-500/30' : 'shadow-blue-500/30'
+            }`}>
+              {/* Dark base */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black" />
+
+              {/* Animated gradient waves */}
+              <motion.div
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+                className="absolute inset-0"
+              >
+                <div className={`absolute inset-0 opacity-80 ${
+                  isCallActive
+                    ? 'bg-gradient-conic from-emerald-500 via-cyan-400 via-teal-500 to-emerald-500'
+                    : 'bg-gradient-conic from-blue-500 via-cyan-400 via-blue-600 to-blue-500'
+                }`} style={{
+                  background: isCallActive
+                    ? 'conic-gradient(from 0deg, #10b981, #22d3d3, #14b8a6, #10b981)'
+                    : 'conic-gradient(from 0deg, #3b82f6, #22d3ee, #2563eb, #3b82f6)',
+                  filter: 'blur(20px)'
+                }} />
+              </motion.div>
+
+              {/* Secondary wave layer */}
+              <motion.div
+                animate={{
+                  rotate: [360, 0],
+                  scale: isSpeaking ? [1, 1.1, 1] : [1, 1.05, 1],
+                }}
+                transition={{
+                  rotate: { duration: 15, repeat: Infinity, ease: 'linear' },
+                  scale: { duration: isSpeaking ? 0.5 : 3, repeat: Infinity, ease: 'easeInOut' },
+                }}
+                className="absolute inset-4"
+              >
+                <div className="w-full h-full rounded-full opacity-60" style={{
+                  background: isCallActive
+                    ? 'conic-gradient(from 180deg, #059669, #06b6d4, #0d9488, #059669)'
+                    : 'conic-gradient(from 180deg, #1d4ed8, #06b6d4, #1e40af, #1d4ed8)',
+                  filter: 'blur(15px)'
+                }} />
+              </motion.div>
+
+              {/* Inner core glow */}
+              <motion.div
+                animate={{
+                  scale: isSpeaking ? [1, 1.3, 1] : [1, 1.1, 1],
+                  opacity: isSpeaking ? [0.6, 0.9, 0.6] : [0.4, 0.6, 0.4],
+                }}
+                transition={{
+                  duration: isSpeaking ? 0.4 : 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="absolute inset-12 rounded-full"
+                style={{
+                  background: isCallActive
+                    ? 'radial-gradient(circle, #34d399 0%, transparent 70%)'
+                    : 'radial-gradient(circle, #60a5fa 0%, transparent 70%)',
+                }}
+              />
+
+              {/* Glossy highlight */}
+              <div className="absolute top-2 left-4 right-4 h-16 rounded-full bg-gradient-to-b from-white/20 to-transparent" />
+
+              {/* Center content */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                {isCallActive ? (
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="flex flex-col items-center"
+                  >
+                    <Mic className="w-12 h-12 text-white drop-shadow-lg" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-white/90 text-sm font-medium drop-shadow-lg"
+                  >
+                    Tap to talk
+                  </motion.div>
+                )}
+              </div>
             </div>
 
             {/* Status indicator */}
@@ -214,8 +252,8 @@ const InteractiveDemo = () => {
                 scale: isCallActive ? [1, 1.2, 1] : 1,
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className={`absolute -bottom-1 -right-1 w-10 h-10 rounded-full border-4 border-white dark:border-gray-900 flex items-center justify-center ${
-                isCallActive ? 'bg-green-500' : 'bg-primary-400'
+              className={`absolute -bottom-1 -right-1 w-10 h-10 rounded-full border-4 border-gray-900 flex items-center justify-center ${
+                isCallActive ? 'bg-emerald-500' : 'bg-blue-500'
               }`}
             >
               {isCallActive && <PhoneOff className="w-4 h-4 text-white" />}
